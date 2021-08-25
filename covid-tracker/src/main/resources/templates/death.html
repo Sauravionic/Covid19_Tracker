@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="icon" href="https://media.giphy.com/media/Q66Otqclp5Xmzg2B8X/giphy.gif?cid=ecf05e47cg2qqzg9nw0bhch6jqsisl4vkl7blpyxmpbm3z2c&rid=giphy.gif&ct=s">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+
+    <title>COVID-19 TRACKER</title>
+    <style>
+        .footer{
+            background-color: #D0E8F2;
+            margin:0px auto;
+            padding: 50px 0 110px;
+            background-image: url(https://media.giphy.com/media/YjQs71FfOU9nCO6VqR/giphy.gif)
+        }
+        .jumbotron {
+            padding:70px 30px 70px 30px;
+            margin:0px auto;
+            background: #D0E8F2 ;
+            color:#293B5F;
+            background-image: url(https://media.giphy.com/media/YjQs71FfOU9nCO6VqR/giphy.gif)
+        }
+
+        .navbar-dark {
+            background-color: #293B5F;
+        }
+
+        .par {
+            font-size: 20px;
+        }
+
+        .background{
+            background-color:  #D9ECF2;
+
+        }
+        .par{
+            background-color: #D0E8F2;
+            background-image: url(https://media.giphy.com/media/YjQs71FfOU9nCO6VqR/giphy.gif)
+        }
+
+        .par2{
+            color: #293B5F;
+
+        }
+        table {
+            border-collapse: collapse;
+        }
+        th {
+            background-color:#D9ECF2;
+            Color:#293B5F;
+        }
+        th, td {
+            width:150px;
+            text-align:center;
+            border:1px solid #293B5F;
+            padding:5px
+
+        }
+        .btn {
+            background: #293B5F;
+            background-image: -webkit-linear-gradient(top, #293B5F, #4291c2);
+            background-image: -moz-linear-gradient(top, #293B5F, #4291c2);
+            background-image: -ms-linear-gradient(top, #293B5F, #4291c2);
+            background-image: -o-linear-gradient(top, #293B5F, #4291c2);
+            background-image: linear-gradient(to bottom, #293B5F, #4291c2);
+            -webkit-border-radius: 10;
+            -moz-border-radius: 10;
+            border-radius: 10px;
+            text-shadow: 1px 30px 9px #3b9ed4;
+            font-family: Georgia;
+            color: #D0E8F2;
+            font-size: 17px;
+            padding: 8px 26px 6px 25px;
+            border: dotted #1f628d 2px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #0d6ba6;
+            background-image: -webkit-linear-gradient(top, #0d6ba6, #96c9eb);
+            background-image: -moz-linear-gradient(top, #0d6ba6, #96c9eb);
+            background-image: -ms-linear-gradient(top, #0d6ba6, #96c9eb);
+            background-image: -o-linear-gradient(top, #0d6ba6, #96c9eb);
+            background-image: linear-gradient(to bottom, #0d6ba6, #96c9eb);
+            text-decoration: none;
+        }
+        .DEATHS{
+            position: relative;
+            left: 1170px;
+            top: 10px;
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark navbar-expand-sm fixed-top">
+    <div class="container">
+        <a class="navbar-brand mr-auto" href="#"><img src="https://media.giphy.com/media/Q66Otqclp5Xmzg2B8X/giphy.gif?cid=ecf05e47cg2qqzg9nw0bhch6jqsisl4vkl7blpyxmpbm3z2c&rid=giphy.gif&ct=s" height="40" width="50"></a>
+
+    </div>
+</nav>
+<header class="jumbotron">
+    <div class="container">
+
+        <h2 class="row justify-content-center">Covid-19 Tracker Application</h2>
+
+        <h5 class="row justify-content-center par">Display's total number of covid deaths across the globe</h5>
+    </div>
+</header>
+<div class="background">
+    <div class="container">
+        <br>
+        <h1 class="row justify-content-center par2" th:text="${totalDeaths}"></h1>
+        <h5 class="row justify-content-center par2">Total deaths reported as of today</h5>
+        <br>
+        <hr>
+    </div>
+
+
+    <div class="container">
+        <div class="DEATHS">
+
+
+            <a class="btn" href="/">CASES</a>
+
+        </div>
+
+        <br>
+        <table class="table">
+            <tr>
+                <th>State</th>
+                <th>Country</th>
+                <th>Total Death upto Today</th>
+                <th>Death Yesterday</th>
+            </tr>
+            <tr th:each="deathStat : ${allDeathStats}">
+                <td th:text="${deathStat.state}"></td>
+                <td th:text="${deathStat.country}"></td>
+                <td th:text="${deathStat.totalDeathsToday}">0</td>
+                <td th:text="${deathStat.deathYesterDay}">0</td>
+            </tr>
+        </table>
+        <br>
+    </div>
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <a class="footer-link" href="https://www.linkedin.com/">LinkedIn</a>
+
+                    <a class="footer-link" href="https://twitter.com/">Twitter</a>
+
+                    <a class="footer-link" href="https://www.github.com/Sauravionic">Website</a>
+                    <br>
+                    <br>
+                    <p class="row justify-content-center">© Copyright 2021 Saurav Srivastava</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
+
+
